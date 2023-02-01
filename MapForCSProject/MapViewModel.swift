@@ -5,8 +5,8 @@
 //
 //
 import MapKit
-
-// Allows more code consiceness
+//
+//// Allows more code consiceness
 enum MapDetails {
     // Default location (Apple HQ)
     static let startingLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)
@@ -17,10 +17,13 @@ enum MapDetails {
 final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // This describes the amount of map and where is visible to the user
-        @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
-    
+    @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
     
     var locationManager: CLLocationManager?
+    var previousLocation: CLLocation?
+    @Published var distanceTravelled: Double = 0.0
+    
+    private var startingLocation: CLLocation? // Add this property to store the starting location
     
     // To get the user location it that their 'location services' are on in the settings
     func checkIfLocationServicesIsEnabled() {
@@ -29,7 +32,6 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             // The delegate allows communication between the settings of the user and this app
             locationManager!.delegate = self
             // It is justified to force unwrap the optional here as the function is called directly above it and only once
-            
         } else {
             print("Location services are disabled.")
         }
@@ -37,14 +39,11 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     
     private func checkLocationAuthorisation() {
         // Ensures the user has given sufficient permissions to get their location
-        
-        // This code safely unwraps the optional
         guard let locationManager = locationManager else {return}
+        // This code safely unwraps the optional
         
         // The switch statement goes through the possiblities of authorisation
         switch locationManager.authorizationStatus {
-            
-            // This case occurs if the user's settings are not known e.g. have never been asked
             case .notDetermined:
                 // This displays a pop up where the user can select their authorisation status
                 locationManager.requestWhenInUseAuthorization()
@@ -57,19 +56,49 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             
             // This case occurs when the user has selected that they are willing to share their location
             case .authorizedAlways, .authorizedWhenInUse:
-            // Subsequently the map displays the icon on the map at the current user's location
-                guard let location = locationManager.location else {return} // MARK: THIS IS WHERE BROKEN
+                // Subsequently the map displays the icon on the map at the current user's location
+                guard let location = locationManager.location else {return}
             // Safely unwraps the optional ^
+                if startingLocation == nil {
+                    startingLocation = location // Update the starting location
+                }
                 region = MKCoordinateRegion(center: location.coordinate, span: MapDetails.defaultSpan)
-            //locationManager.location!
             @unknown default:
-                print("Unknown defualt")
             // Fallback for cases that weren’t matched by any previous case statement
+                print("Unknown defualt")
                 break
         }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorisation()
+    }
+    
+    
+    
+    
+    
+    //MARK: FIXË
+    
+    // Add a method to calculate the distance travelled
+    func distanceTraveled() -> Double {
+        guard let location = locationManager?.location, let startingLocation = startingLocation else {
+            return 0
+        }
+        return location.distance(from: startingLocation)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+                if previousLocation == nil {
+                    previousLocation = location
+                }
+                let distance = location.distance(from: previousLocation!)
+                // coverts distance into type CLLocationManager
+                var distanceFromStart = distanceTraveled()
+                distanceFromStart += distance
+        
+                previousLocation = location
+
     }
 }
