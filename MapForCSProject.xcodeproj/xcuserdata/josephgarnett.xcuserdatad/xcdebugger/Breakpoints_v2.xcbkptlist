@@ -24,32 +24,48 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8A7C8277-9696-4D4D-AFB8-9C4A1D9EEDEA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MapForCSProject/MapViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "13C32FCA-A5CD-469C-8FA1-C1804A11800A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MapForCSProject/MapViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8A7C8277-9696-4D4D-AFB8-9C4A1D9EEDEA - d0e9b72b41ba310f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MapForCSProject.MapViewModel.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
+                  moduleName = "MapForCSProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/josephgarnett/Desktop/A-Level%20Computer%20Science/CS%20Project%20Folder/CSProjectLearning/MapForCSProject/MapForCSProject/MapViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "8A7C8277-9696-4D4D-AFB8-9C4A1D9EEDEA - d0e9b72b41ba310f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MapForCSProject.MapViewModel.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
+                  moduleName = "MapForCSProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/josephgarnett/Desktop/A-Level%20Computer%20Science/CS%20Project%20Folder/CSProjectLearning/MapForCSProject/MapForCSProject/MapViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "156">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
